@@ -1,0 +1,28 @@
+server:
+  port: 8099
+  servlet:
+    context-path: /product-center-test
+token:
+  # 令牌自定义标识
+  header: Authorization
+spring:
+  datasource:
+    driver-class-name:  com.mysql.cj.jdbc.Driver
+    #url:  jdbc:mysql://rm-bp15j925v4x34ao0uvo.mysql.rds.aliyuncs.com:3306/product_center?useUnicode=true&serverTimezone=Asia/Shanghai&rewriteBatchedStatements=true
+    url:  jdbc:mysql://localhost:3306/questionnaire1?useUnicode=true&serverTimezone=Asia/Shanghai&rewriteBatchedStatements=true
+    username:  root
+    password:  jie.lin
+    hikari:
+      idle-timeout: 60000
+      maximum-pool-size: 30
+      minimum-idle: 10
+  jpa:
+    show-sql: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+        format_sql: true
+    hibernate:
+      ddl-auto: update
+platform:
+  url: http://mall.datastreamer.cn
