@@ -22,10 +22,10 @@ public interface QuestionnaireService {
 
     /**
      * 显示问卷详情
-     * @param questionnaireVO 问卷信息
+     * @param id 问卷id
      * @return 问卷详情
      */
-    public QuestionnaireDetailVO detailQuestionnaire(QuestionnaireVO questionnaireVO);
+    public QuestionnaireDetailVO detailQuestionnaire(Long id) throws QuestionnaireException;
 
     /**
      * 保存问卷信息

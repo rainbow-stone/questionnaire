@@ -1,14 +1,31 @@
 package com.baoshine.questionnaire.vo;
 
-import com.baoshine.questionnaire.entity.Path;
+import com.baoshine.questionnaire.entity.AnswerOption;
+import com.baoshine.questionnaire.entity.Questionnaire;
+import lombok.Data;
 
 import java.util.List;
 
-public class PathVO extends Path {
+@Data
+public class PathVO {
+
+    private Long id;
 
     /**
-     * 条件分支选项
+     * 问卷ID
      */
-    private List<AnswerOptionVO> optionVOS;
+    private Questionnaire questionnaire;
+
+    /**
+     * 上级节点
+     */
+    private Long parentNodeId;
+
+    /**
+     * 下级节点
+     */
+    private Long childNodeId;
+
+    private List<AnswerOption> answerOptions;
 
 }

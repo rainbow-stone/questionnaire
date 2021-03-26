@@ -20,6 +20,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class QuestionnaireServiceImpl implements QuestionnaireService {
@@ -47,16 +48,22 @@ public class QuestionnaireServiceImpl implements QuestionnaireService {
     /**
      * 显示问卷详情
      *
-     * @param questionnaireVO 问卷信息
+     * @param id 问卷id
      * @return 问卷详情
      */
     @Override
-    public QuestionnaireDetailVO detailQuestionnaire(QuestionnaireVO questionnaireVO) {
-        List<Node> nodes = genericRepository.findAllBy(Node.class, "questionnaireId", questionnaireVO.getId());
-        List<Path> paths = genericRepository.findAllBy(Path.class, "questionnaire", questionnaireVO.getId());
+    public QuestionnaireDetailVO detailQuestionnaire(Long id) throws QuestionnaireException {
+
+        Questionnaire questionnaire = genericRepository.findById(Questionnaire.class, id).orElseThrow(() -> new QuestionnaireException(ResultCodeEnum.CMN_QUERY_RESULT_NULL));
+        QuestionnaireVO questionnaireVO = ListBeanConvertUtil.convert(questionnaire, QuestionnaireVO.class);
+        List<Node> nodes = questionnaire.getNodeList();
+        List<Path> paths = questionnaire.getPathList();
+        if(nodes == null || nodes.size() == 0){
+            return new QuestionnaireDetailVO(questionnaireVO, new ArrayList<>(), new ArrayList<>());
+        }
         List<NodeVO> nodeVOS = ListBeanConvertUtil.convert(nodes, NodeVO.class);
         List<PathVO> pathVOS = ListBeanConvertUtil.convert(paths, PathVO.class);
-        return null;
+        return new QuestionnaireDetailVO(questionnaireVO, nodeVOS, pathVOS);
     }
 
     /**

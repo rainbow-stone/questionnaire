@@ -5,6 +5,8 @@ import javax.persistence.*;
 import com.baoshine.common.entity.BaseEntity;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
 
 import java.util.List;
 
@@ -17,6 +19,8 @@ import java.util.List;
 @EqualsAndHashCode(callSuper = true)
 @Entity
 @Data
+@DynamicInsert
+@DynamicUpdate
 @Table ( name ="answer_option")
 public class AnswerOption extends BaseEntity {
 
@@ -40,10 +44,16 @@ public class AnswerOption extends BaseEntity {
 	@Column(name = "content" )
 	private String content;
 
+	/**
+	 * 答案对应问题List
+	 */
 	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(name="question_answer_option",joinColumns={@JoinColumn(name="option_id")},inverseJoinColumns={@JoinColumn(name="qeustion_id")})
 	private List<Question> questions;
 
+	/**
+	 * 答案对应节点链接List
+	 */
 	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(name="path_option",joinColumns={@JoinColumn(name="option_id")},inverseJoinColumns={@JoinColumn(name="path_id")})
 	private List<Path> paths;

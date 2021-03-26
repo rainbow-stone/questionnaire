@@ -5,6 +5,9 @@ import javax.persistence.*;
 import com.baoshine.common.entity.BaseEntity;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
 
 import java.util.List;
 
@@ -14,8 +17,11 @@ import java.util.List;
  * @Date 2021-03-23 17:54:01 
  */
 
+@EqualsAndHashCode(callSuper = true)
 @Entity
 @Data
+@DynamicInsert
+@DynamicUpdate
 @Table ( name ="questionnaire")
 public class Questionnaire  extends BaseEntity {
 

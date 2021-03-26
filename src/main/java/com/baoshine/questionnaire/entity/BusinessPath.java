@@ -5,6 +5,8 @@ import javax.persistence.*;
 import com.baoshine.common.entity.BaseEntity;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
 
 /**
  * @Description  
@@ -15,6 +17,8 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = true)
 @Entity
 @Data
+@DynamicInsert
+@DynamicUpdate
 @Table ( name ="business_path")
 public class BusinessPath  extends BaseEntity {
 

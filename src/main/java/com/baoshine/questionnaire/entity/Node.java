@@ -7,6 +7,9 @@ import com.baoshine.common.entity.BaseEntity;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
 
 /**
  * @Description  
@@ -14,8 +17,11 @@ import lombok.Data;
  * @Date 2021-03-23 17:54:00 
  */
 
+@EqualsAndHashCode(callSuper = true)
 @Entity
 @Data
+@DynamicInsert
+@DynamicUpdate
 @Table ( name ="node")
 public class Node  extends BaseEntity {
 

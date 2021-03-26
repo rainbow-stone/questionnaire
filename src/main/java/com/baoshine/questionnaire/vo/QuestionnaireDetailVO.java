@@ -1,11 +1,16 @@
 package com.baoshine.questionnaire.vo;
 
-import com.baoshine.questionnaire.entity.Questionnaire;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
+public class QuestionnaireDetailVO {
 
-public class QuestionnaireDetailVO extends Questionnaire {
-
+    private QuestionnaireVO questionnaireVO;
     /**
      * 问卷节点
      */

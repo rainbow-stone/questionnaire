@@ -4,6 +4,9 @@ import javax.persistence.*;
 
 import com.baoshine.common.entity.BaseEntity;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
 
 /**
  * @Description  
@@ -11,8 +14,11 @@ import lombok.Data;
  * @Date 2021-03-24 15:31:40 
  */
 
+@EqualsAndHashCode(callSuper = true)
 @Entity
 @Data
+@DynamicInsert
+@DynamicUpdate
 @Table ( name ="business_questionnaire_option")
 public class BusinessPathOption extends BaseEntity {
 

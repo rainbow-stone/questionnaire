@@ -3,7 +3,6 @@ package com.baoshine.questionnaire.pool;
 import com.baoshine.questionnaire.QuestionnaireApplication;
 import com.baoshine.questionnaire.entity.Node;
 import com.baoshine.questionnaire.entity.Path;
-import com.baoshine.questionnaire.entity.PathOption;
 import com.baoshine.questionnaire.entity.Questionnaire;
 import com.baoshine.questionnaire.repository.*;
 import lombok.extern.slf4j.Slf4j;
@@ -31,7 +30,6 @@ class QuestionnaireTest {
 
     private final AnswerOptionRepository answerOptionRepository;
 
-    private final QuestionnaireOptionRepository questionnaireOptionRepository;
 
 
     @Autowired
@@ -39,14 +37,12 @@ class QuestionnaireTest {
                              NodeRepository nodeRepository,
                              PathRepository pathRepository,
                              QuestionRepository questionRepository,
-                             AnswerOptionRepository answerOptionRepository,
-                             QuestionnaireOptionRepository questionnaireOptionRepository){
+                             AnswerOptionRepository answerOptionRepository){
         this.questionnaireRepository = questionnaireRepository;
         this.nodeRepository = nodeRepository;
         this.pathRepository = pathRepository;
         this.questionRepository = questionRepository;
         this.answerOptionRepository = answerOptionRepository;
-        this.questionnaireOptionRepository = questionnaireOptionRepository;
     }
 
     @Test
@@ -205,7 +201,7 @@ class QuestionnaireTest {
     //TODO 问题为多选，判断条件为多选如何解决： 添加path-options匹配关系，一个条件中存在多个option关系
     //TODO 如果条件为需要跟踪历史条件，
     public void outputChildNode(List<Path> paths, Node rootNode, int num){
-        String s = "   ";
+        /*String s = "   ";
         for(int i = 0; i < num; i++){
             s = s.concat(s);
         }
@@ -221,7 +217,7 @@ class QuestionnaireTest {
             }
 
             outputChildNode(paths, nodeRepository.findById(path.getChildNodeId()).get(), num);
-        }
+        }*/
     }
 
     @Test
