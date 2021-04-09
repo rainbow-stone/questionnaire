@@ -1,5 +1,7 @@
 package com.baoshine.questionnaire.utils;
 
+import cn.hutool.core.bean.BeanUtil;
+import cn.hutool.core.bean.copier.CopyOptions;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Page;
@@ -16,7 +18,10 @@ import java.util.stream.Collectors;
 @Slf4j
 public class ListBeanConvertUtil {
 
-    public static <T, V> T convert(V v, Class<T> classT){
+    public static <T, V> T convert(V v, Class<T> classT) {
+        if (v == null) {
+            return null;
+        }
         T t;
         try {
             t = classT.newInstance();
@@ -37,7 +42,10 @@ public class ListBeanConvertUtil {
         ).collect(Collectors.toList());
     }
 
-    public static <T, V> T convert(V v, Class<T> classT, String... ignoreProperties){
+    public static <T, V> T convert(V v, Class<T> classT, String... ignoreProperties) {
+        if (v == null) {
+            return null;
+        }
         T t = null;
         try {
             t = classT.newInstance();
@@ -53,6 +61,21 @@ public class ListBeanConvertUtil {
         return vList.stream().map(e ->
                 convert(e, classT, ignoreProperties)
         ).collect(Collectors.toList());
+    }
+
+    public static <T, V> T convertForOptions(V v, Class<T> classT, CopyOptions copyOptions) {
+        if (v == null) {
+            return null;
+        }
+        T t = null;
+        try {
+            t = classT.newInstance();
+        } catch (InstantiationException | IllegalAccessException e) {
+            log.error("ListBeanConvertUtil build new instance failed", e);
+            return null;
+        }
+        BeanUtil.copyProperties(v, t, CopyOptions.create().setIgnoreNullValue(true));
+        return t;
     }
 
     public static <T, V> Page<T> convertPage(Page<V> vPage, Class<T> classT, String... ignoreProperties) {

@@ -20,7 +20,8 @@ public class GlobalDefultExceptionHandler {
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResultResp<Void> handleValidationBodyException(MethodArgumentNotValidException e) {
         for (ObjectError s : e.getBindingResult().getAllErrors()) {
-            return ResultResp.error(ResultCodeEnum.CMN_ILLEGAL_ARG.getCode(), s.getObjectName() + ": " + s.getDefaultMessage());
+            return ResultResp
+                    .error(ResultCodeEnum.CMN_ILLEGAL_ARG.getCode(), s.getObjectName() + ": " + s.getDefaultMessage());
         }
         return ResultResp.error(ResultCodeEnum.CMN_ILLEGAL_ARG.getCode(), "Unknown parameter");
     }
@@ -28,7 +29,7 @@ public class GlobalDefultExceptionHandler {
     /**
      * 主动throw的异常
      *
-     * @param e PosProviderException
+     * @param e        PosProviderException
      * @param response response
      * @return ResultResponse
      */

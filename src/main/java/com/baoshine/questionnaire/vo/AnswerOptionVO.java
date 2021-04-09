@@ -1,12 +1,12 @@
 package com.baoshine.questionnaire.vo;
 
+import com.baoshine.questionnaire.vo.request.SearchRequest;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
-import javax.persistence.Column;
-import java.util.List;
-
+@EqualsAndHashCode(callSuper = true)
 @Data
-public class AnswerOptionVO{
+public class AnswerOptionVO extends SearchRequest {
 
     private Long id;
     /**
@@ -22,17 +22,6 @@ public class AnswerOptionVO{
     /**
      * 答案内容
      */
-    @Column(name = "content" )
     private String content;
-
-    /**
-     * 答案对应问题List
-     */
-    private List<QuestionVO> questionVOS;
-
-    /**
-     * 答案对应节点链接List
-     */
-    private List<PathVO> pathVOS;
 
 }

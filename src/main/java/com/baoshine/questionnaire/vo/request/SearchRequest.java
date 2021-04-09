@@ -20,7 +20,7 @@ import java.util.stream.Collectors;
 @NoArgsConstructor
 @AllArgsConstructor
 @ApiModel("分页查询条件")
-@JsonIgnoreProperties(value = { "sortColumn", "sortOrder", "orderByExpression" }, ignoreUnknown = true)
+@JsonIgnoreProperties(value = {"sortColumn", "sortOrder", "orderByExpression"}, ignoreUnknown = true)
 public abstract class SearchRequest implements Serializable {
 
     private static final long serialVersionUID = -3383140844575115557L;
@@ -42,7 +42,8 @@ public abstract class SearchRequest implements Serializable {
     }
 
     protected List<Sort.Order> buildOrderList() {
-        return orders.stream().map(tmp -> new Sort.Order(Sort.Direction.valueOf(tmp.getDirection()), tmp.getProperty())).collect(Collectors.toList());
+        return orders.stream().map(tmp -> new Sort.Order(Sort.Direction.valueOf(tmp.getDirection()), tmp.getProperty()))
+                .collect(Collectors.toList());
     }
 
     public String getSortColumn(String rootPath) {
@@ -64,6 +65,7 @@ public abstract class SearchRequest implements Serializable {
             return null;
         }
         List<Sort.Order> orderList = buildOrderList();
-        return orderList.stream().map(order -> rootPath + "." + order.getProperty() + " " + order.getDirection()).collect(Collectors.joining(", "));
+        return orderList.stream().map(order -> rootPath + "." + order.getProperty() + " " + order.getDirection())
+                .collect(Collectors.joining(", "));
     }
 }

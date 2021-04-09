@@ -21,8 +21,16 @@ public class BaseEntity implements Serializable {
 
     */
 /**
-     * 主键ID
-     *//*
+ * 主键ID
+ * <p>
+ * 创建时间
+ * <p>
+ * 创建用户
+ * <p>
+ * 修改时间
+ * <p>
+ * 修改用户
+ *//*
 
     @Id
     @Column(name = "id" )
@@ -31,8 +39,8 @@ public class BaseEntity implements Serializable {
 
     */
 /**
-     *  创建时间
-     *//*
+ *  创建时间
+ *//*
 
     @CreatedDate
     @Column(name = "create_time")
@@ -40,8 +48,8 @@ public class BaseEntity implements Serializable {
 
     */
 /**
-     *  创建用户
-     *//*
+ *  创建用户
+ *//*
 
     @CreatedBy
     @Column(name = "create_user")
@@ -49,8 +57,8 @@ public class BaseEntity implements Serializable {
 
     */
 /**
-     *  修改时间
-     *//*
+ *  修改时间
+ *//*
 
     @LastModifiedDate
     @Column(name = "update_time")
@@ -58,8 +66,8 @@ public class BaseEntity implements Serializable {
 
     */
 /**
-     *  修改用户
-     *//*
+ *  修改用户
+ *//*
 
     @LastModifiedBy
     @Column(name = "update_user")

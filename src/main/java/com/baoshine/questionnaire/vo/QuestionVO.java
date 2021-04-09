@@ -1,12 +1,16 @@
 package com.baoshine.questionnaire.vo;
 
+import com.baoshine.questionnaire.vo.request.SearchRequest;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import java.util.List;
 
+@EqualsAndHashCode(callSuper = true)
 @Data
-public class QuestionVO {
+public class QuestionVO extends SearchRequest {
 
+    private static final long serialVersionUID = -3050624266947964543L;
     private Long id;
 
     /**
@@ -30,5 +34,7 @@ public class QuestionVO {
     private Long presentationType;
 
     private List<AnswerOptionVO> answerOptionVOS;
+
+    private List<NodeVO> nodeVOS;
 
 }

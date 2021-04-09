@@ -1,0 +1,32 @@
+server:
+  port: 8083
+  servlet:
+    context-path: /questionnaire
+token:
+  # 令牌自定义标识
+  header: Authorization
+
+spring:
+  jpa:
+    database-platform: org.hibernate.dialect.MySQLDialect
+    hibernate:
+      ddl-auto: update
+logging:
+  level:
+    jdbc:
+      sqltiming: INFO
+      sqlonly: OFF
+      audit: OFF
+      resultset: OFF
+      connection: OFF
+servlet:
+  multipart:
+    enabled: true
+    # Threshold after which files are written to disk.
+    file-size-threshold: 2KB
+    max-file-size: 200MB
+    max-request-size: 215MB
+
+
+platform:
+  url: http://mall.datastreamer.cn

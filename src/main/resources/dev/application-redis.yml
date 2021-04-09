@@ -1,0 +1,47 @@
+#redis
+spring:
+  data:
+    redis:
+      repositories:
+        enabled: false
+  redis:
+    #redis机器ip
+    host: 127.0.0.1
+    #redis端口
+    port: 6379
+    #redis密码
+    password:
+    #redis超时时间（毫秒），如果不设置，取默认值2000
+    timeout: 10000
+
+    #redis集群配置
+    #spring.cluster.nodes=192.168.1.1:7001,192.168.1.1:7002,192.168.1.1:7003,192.168.1.1:7004,192.168.1.1:7005,192.168.1.1:7006
+    #spring.cluster.max-redirects=3
+
+    #哨兵模式
+    #sentinel.host1=192.168.1.1
+    #sentinel.port1=26379
+
+    #sentinel.host2=192.168.1.2
+    #sentinel.port2=26379
+    lettuce:
+      pool:
+        #连接池的最大数据库连接数
+        max-active: 8
+        #最大空闲数
+        max-idle: 8
+        #最大建立连接等待时间。如果超过此时间将接到异常。设为-1表示无限制。
+        max-wait: 1000
+        #最小连接数
+        min-idle: 1
+com:
+  baoshine:
+    cache:
+      redis:
+        expires:
+          dictionary-id: 60000 #缓存60秒
+          dictionary: 60000 #缓存60秒
+          claim-product: 86400000 #缓存24小时
+          claim-product-plan: 86400000 #缓存24小时
+      caffeine:
+        expire-after-write: 30000 #写入后30秒失效

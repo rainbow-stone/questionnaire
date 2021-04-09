@@ -2,8 +2,6 @@ package com.ebao.questionnaire.tree;
 
 import lombok.Data;
 
-import java.util.List;
-
 /**
  * 问卷树节点
  */

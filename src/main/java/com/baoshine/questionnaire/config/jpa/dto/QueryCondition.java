@@ -11,12 +11,11 @@ import java.util.List;
  * @author Luke
  */
 public interface QueryCondition extends Serializable {
-	/**
-	 * Convert this query condition to JPQL condition expression.
-	 *
-	 * @param parameters
-	 *            the condition parameter
-	 * @return the constructed JPQL condition expression
-	 */
-	String toSQL(List<Parameter> parameters);
+    /**
+     * Convert this query condition to JPQL condition expression.
+     *
+     * @param parameters the condition parameter
+     * @return the constructed JPQL condition expression
+     */
+    String toSQL(List<Parameter> parameters);
 }

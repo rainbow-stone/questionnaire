@@ -98,7 +98,7 @@ public class GenericRepository {
         }
         // Remove all Orders the Specifications might have applied
         query.orderBy(Collections.emptyList());
-        TypedQuery<Long> typedQuery =  entityManager.createQuery(query);
+        TypedQuery<Long> typedQuery = entityManager.createQuery(query);
         List<Long> totals = typedQuery.getResultList();
         long total = 0L;
         for (Long element : totals) {
@@ -133,7 +133,7 @@ public class GenericRepository {
         if (sort.isSorted()) {
             query.orderBy(toOrders(sort, root, builder));
         }
-        TypedQuery<T> typedQuery =  entityManager.createQuery(query);
+        TypedQuery<T> typedQuery = entityManager.createQuery(query);
         return pageable.isUnpaged() ? new PageImpl<T>(typedQuery.getResultList())
                 : readPage(typedQuery, entityClass, pageable, spec);
     }

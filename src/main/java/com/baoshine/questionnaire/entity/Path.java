@@ -1,20 +1,18 @@
 package com.baoshine.questionnaire.entity;
 
-import javax.persistence.*;
-
-import com.baoshine.common.entity.BaseEntity;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
+import javax.persistence.*;
 import java.util.List;
 
 /**
- * @Description  
- * @Author  
- * @Date 2021-03-23 17:54:00 
+ * @Description
+ * @Author
+ * @Date 2021-03-23 17:54:00
  */
 
 @EqualsAndHashCode(callSuper = true)
@@ -22,31 +20,41 @@ import java.util.List;
 @Data
 @DynamicInsert
 @DynamicUpdate
-@Table ( name ="path")
-public class Path  extends BaseEntity {
+@Table(name = "path")
+public class Path extends UUIDEntity {
 
-	private static final long serialVersionUID =  3736569373192296112L;
+    private static final long serialVersionUID = -4840647055351909617L;
 
-	/**
-	 * 问卷ID
-	 */
-	@JsonBackReference
-	@ManyToOne
-	private Questionnaire questionnaire;
+    /**
+     * 问卷ID
+     */
+    @JsonBackReference
+    @ManyToOne//(cascade = CascadeType.ALL)
+    private Questionnaire questionnaire;
 
-	/**
-	 * 上级节点
-	 */
-	@Column(name = "parent_node_id" )
-	private Long parentNodeId;
+    /**
+     * 上级节点
+     */
+    @Column(name = "parent_node_id")
+    private Long parentNodeId;
 
-	/**
-	 * 下级节点
-	 */
-	@Column(name = "child_node_id" )
-	private Long childNodeId;
+    /**
+     * 下级节点
+     */
+    @Column(name = "child_node_id")
+    private Long childNodeId;
 
-	@ManyToMany(mappedBy = "paths")
-	private List<AnswerOption> answerOptions;
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "path_option", joinColumns = {@JoinColumn(name = "option_id")}, inverseJoinColumns = {
+            @JoinColumn(name = "path_id")})
+    private List<AnswerOption> answerOptions;
 
+    @Override
+    public String toString() {
+        return "Path{" +
+                "questionnaire=" + questionnaire +
+                ", parentNodeId=" + parentNodeId +
+                ", childNodeId=" + childNodeId +
+                '}';
+    }
 }

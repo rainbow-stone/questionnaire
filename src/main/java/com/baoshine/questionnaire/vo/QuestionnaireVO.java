@@ -1,21 +1,14 @@
 package com.baoshine.questionnaire.vo;
 
-import com.baoshine.questionnaire.entity.Node;
-import com.baoshine.questionnaire.entity.Path;
-import com.baoshine.questionnaire.entity.Questionnaire;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.baoshine.questionnaire.vo.request.SearchRequest;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import org.hibernate.annotations.Fetch;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.FetchType;
-import javax.persistence.OneToMany;
 import java.util.List;
 
+@EqualsAndHashCode(callSuper = true)
 @Data
-public class QuestionnaireVO {
+public class QuestionnaireVO extends SearchRequest {
 
     private Long id;
 
@@ -33,5 +26,7 @@ public class QuestionnaireVO {
      * 问卷描述
      */
     private String questionnaireDesc;
+
+    private List<ProductQuestionnaireVO> productQuestionnaireVOS;
 
 }

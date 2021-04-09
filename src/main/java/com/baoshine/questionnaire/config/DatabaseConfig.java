@@ -36,7 +36,7 @@ public class DatabaseConfig {
     private Environment env;
 
     @Bean
-    @ConfigurationProperties(prefix="com.baoshine.datasource.pos-provider")
+    @ConfigurationProperties(prefix = "com.baoshine.datasource.questionnaire")
     public DataSource dataSource() {
         return new HikariDataSource();
     }

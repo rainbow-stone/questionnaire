@@ -1,9 +1,10 @@
-package com.baoshine.questionnaire.pool;
+package com.baoshine.questionnaire.service;
 
 import com.baoshine.questionnaire.QuestionnaireApplication;
 import com.baoshine.questionnaire.entity.AnswerOption;
 import com.baoshine.questionnaire.repository.AnswerOptionRepository;
 import lombok.extern.slf4j.Slf4j;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,15 +19,16 @@ import java.util.List;
 @Slf4j
 class AnswerOptionTest {
 
+
     private final AnswerOptionRepository answerOptionRepository;
 
     @Autowired
-    public AnswerOptionTest(AnswerOptionRepository answerOptionRepository){
+    public AnswerOptionTest(AnswerOptionRepository answerOptionRepository) {
         this.answerOptionRepository = answerOptionRepository;
     }
 
     @Test
-    void saveGenderOption(){
+    void saveGenderOption() {
         List<AnswerOption> answerOptions = new ArrayList<>();
         AnswerOption answerOption = new AnswerOption();
         answerOption.setCode("A1");
@@ -42,7 +44,39 @@ class AnswerOptionTest {
     }
 
     @Test
-    void saveAgeOption(){
+    void saveNationalityOption() {
+        List<AnswerOption> answerOptions = new ArrayList<>();
+        AnswerOption answerOption = new AnswerOption();
+        answerOption.setCode("A8");
+        answerOption.setType(1L);
+        answerOption.setContent("中国");
+        answerOptions.add(answerOption);
+        AnswerOption answerOption1 = new AnswerOption();
+        answerOption1.setCode("A9");
+        answerOption1.setType(1L);
+        answerOption1.setContent("美国");
+        answerOptions.add(answerOption1);
+        answerOptionRepository.saveAll(answerOptions);
+    }
+
+    @Test
+    void saveOccupationOption() {
+        List<AnswerOption> answerOptions = new ArrayList<>();
+        AnswerOption answerOption = new AnswerOption();
+        answerOption.setCode("A10");
+        answerOption.setType(1L);
+        answerOption.setContent("老师");
+        answerOptions.add(answerOption);
+        AnswerOption answerOption1 = new AnswerOption();
+        answerOption1.setCode("A11");
+        answerOption1.setType(1L);
+        answerOption1.setContent("工人");
+        answerOptions.add(answerOption1);
+        answerOptionRepository.saveAll(answerOptions);
+    }
+
+    @Test
+    void saveAgeOption() {
         List<AnswerOption> answerOptions = new ArrayList<>();
         AnswerOption answerOption = new AnswerOption();
         answerOption.setCode("A3");
@@ -60,5 +94,15 @@ class AnswerOptionTest {
         answerOption2.setContent("50-100");
         answerOptions.add(answerOption2);
         answerOptionRepository.saveAll(answerOptions);
+    }
+
+    @Test
+    void setIdSave() {
+        AnswerOption answerOption = new AnswerOption();
+        answerOption.setId(22L);
+        answerOption.setCode("A3");
+        answerOption.setType(1L);
+        answerOption.setContent("0-20");
+        answerOptionRepository.save(answerOption);
     }
 }

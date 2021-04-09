@@ -40,7 +40,8 @@ public abstract class JpaSearchQueryUtil extends JpaSingleQueryUtil {
      * @throws EntityPersistenceException if any persistence error occurs
      */
     public static <T> Page<T> search(JpaQueryHints queryHints, EntityManager entityManager,
-                                     Class<T> entityClass, SearchRequest filter, WhereClause whereClause, OrderClause orderClause)
+                                     Class<T> entityClass, SearchRequest filter, WhereClause whereClause,
+                                     OrderClause orderClause)
             throws EntityPersistenceException {
         try {
             if (filter.getPage() < 0 || filter.getSize() < 1) {
@@ -54,7 +55,8 @@ public abstract class JpaSearchQueryUtil extends JpaSingleQueryUtil {
             }
 
             // fix the issue that if the page number > maximum page number
-            filter.setPage((int) Math.min(filter.getPage(), Math.ceil((double) totalItems / (double) filter.getSize())));
+            filter.setPage(
+                    (int) Math.min(filter.getPage(), Math.ceil((double) totalItems / (double) filter.getSize())));
 
             final List<Parameter> parameters = new ArrayList<>();
             final TypedQuery<T> query = createParametersQuery(queryHints, entityManager, entityClass,
@@ -100,7 +102,8 @@ public abstract class JpaSearchQueryUtil extends JpaSingleQueryUtil {
             }
 
             // fix the issue that if the page number > maximum page number
-            filter.setPage((int) Math.min(filter.getPage(), Math.ceil((double) totalItems / (double) filter.getSize())));
+            filter.setPage(
+                    (int) Math.min(filter.getPage(), Math.ceil((double) totalItems / (double) filter.getSize())));
 
             final List<Parameter> parameters = new ArrayList<>();
             final TypedQuery<T> query = createParametersQuery(queryHints, entityManager, itemType,
@@ -143,7 +146,8 @@ public abstract class JpaSearchQueryUtil extends JpaSingleQueryUtil {
             }
 
             // fix the issue that if the page number > maximum page number
-            filter.setPage((int) Math.min(filter.getPage(), Math.ceil(countResult.doubleValue() / (double) filter.getSize())));
+            filter.setPage(
+                    (int) Math.min(filter.getPage(), Math.ceil(countResult.doubleValue() / (double) filter.getSize())));
 
             final int totalItems = countResult.intValue();
             final TypedQuery<T> query = createParametersQuery(queryHints, entityManager, itemType,
