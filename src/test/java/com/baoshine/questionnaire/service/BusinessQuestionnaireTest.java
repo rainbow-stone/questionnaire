@@ -1,4 +1,4 @@
-package com.baoshine.questionnaire.service.impl;
+package com.baoshine.questionnaire.service;
 
 import com.baoshine.questionnaire.QuestionnaireApplication;
 import com.baoshine.questionnaire.constant.ExcludeFields;
@@ -7,10 +7,6 @@ import com.baoshine.questionnaire.entity.Node;
 import com.baoshine.questionnaire.entity.Questionnaire;
 import com.baoshine.questionnaire.exception.QuestionnaireException;
 import com.baoshine.questionnaire.pool.utils.TestUtils;
-import com.baoshine.questionnaire.repository.GenericRepository;
-import com.baoshine.questionnaire.service.BusinessQuestionnaireService;
-import com.baoshine.questionnaire.service.QuestionnaireService;
-import com.baoshine.questionnaire.service.TestQuestionnaireGenerate;
 import com.baoshine.questionnaire.vo.BusinessAnswerOptionVO;
 import com.baoshine.questionnaire.vo.BusinessNodeVO;
 import com.baoshine.questionnaire.vo.BusinessQuestionnaireVO;
@@ -38,7 +34,7 @@ import java.util.stream.Collectors;
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = {QuestionnaireApplication.class, TestQuestionnaireGenerate.class})
 @Slf4j
-class BusinessQuestionnaireServiceImplTest {
+class BusinessQuestionnaireTest {
 
     private final BusinessQuestionnaireService businessQuestionnaireService;
 
@@ -48,9 +44,9 @@ class BusinessQuestionnaireServiceImplTest {
 
 
     @Autowired
-    public BusinessQuestionnaireServiceImplTest(BusinessQuestionnaireService businessQuestionnaireService,
-                                                QuestionnaireService questionnaireService,
-                                                TestQuestionnaireGenerate testQuestionnaireGenerate) {
+    public BusinessQuestionnaireTest(BusinessQuestionnaireService businessQuestionnaireService,
+                                     QuestionnaireService questionnaireService,
+                                     TestQuestionnaireGenerate testQuestionnaireGenerate) {
         this.businessQuestionnaireService = businessQuestionnaireService;
         this.questionnaireService = questionnaireService;
         this.testQuestionnaireGenerate = testQuestionnaireGenerate;
